@@ -1,8 +1,15 @@
-class BrandController{
-    async create(req, res)
-    {}
-    async getBrands(req,res)
-    {}
+const { Brand } = require("../entities/entities");
+
+class BrandController {
+  async create(req, res) {
+    const { name } = req.body;
+    const brand = await Brand.create({ name });
+    return res.json(brand);
+  }
+  async getBrands(req, res) {
+    const brands = await Brand.findAll();
+    return res.json(brands);
+  }
 }
 
-module.exports = new BrandController()
+module.exports = new BrandController();
