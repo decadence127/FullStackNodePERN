@@ -28,6 +28,14 @@ class DeviceController {
 
     return res.json(device);
   }
+  async delete(req, res) {
+    const { name } = req.body;
+    console.log({ name });
+    const type = await Type.destroy({
+      where: { name },
+    });
+    return res.json({ message: "successfully deleted" });
+  }
   async getAllDevices(req, res) {
     let { brandId, typeId, limit, page } = req.query;
     page = page || 1;
